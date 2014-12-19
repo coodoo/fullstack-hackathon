@@ -1,0 +1,21 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "myMail":{
+    "connector": "mail",
+    "name": "X-Man",
+    "transports": [{
+      "type": "smtp",
+      "service": "gmail",
+      "host": "smtp.gmail.com",
+      "secureConnection": true,
+      "port": 465,
+      "auth": {
+        "user": "xx@gmail.com",
+        "pass": "xx"
+      }
+    }]
+  }
+}
