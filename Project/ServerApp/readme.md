@@ -1,2 +1,0 @@
-
-- Example for fullstack hackathon
