@@ -1,17 +1,15 @@
 
-+ node server 併入 gulp 流程，不要獨立檔案
 
 # 範例位置
 
   - https://github.com/coodoo/fullstack-hackathon
 
 
-
-- API 文件
+# API 文件
 
 	- http://docs.strongloop.com/display/public/LB/LoopBack
 
-- 其它文件
+# 其它文件
 
 	- http://apidocs.strongloop.com/
 
@@ -26,9 +24,9 @@
 
 		$ slc loopback
 
-		$ cd hack
+		$ cd ServerApp
 
-		$ slc loopback:model	// 建立 Todo model, 三個屬性: uid, title, done, memo
+		$ slc loopback:model	// 建立 Todo model 屬性: title, done, memo, created
 
 	- 啟動專案
 
@@ -139,3 +137,8 @@
 # 測試整體程式
 
 	- 在 Project/ServerApp/server 下打 slc run .
+
+
+# vagrant 裝 nodejs, mongo
+  - 在 temp/111-box 下
+  - 執行 vagrant up 即可

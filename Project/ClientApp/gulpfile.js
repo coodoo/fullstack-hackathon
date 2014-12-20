@@ -9,8 +9,8 @@ var fs = require('fs');
 // 環境變數
 var env = 'prod'; // dev||prod
 
-// var live = livereload();
-// livereload.listen();
+var live = livereload();
+livereload.listen();
 
 // 路徑變數
 var paths = {
@@ -90,7 +90,6 @@ gulp.task('watch', function() {
  * livereload refresh
  */
 gulp.task( 'refresh', function(){
-    return;
 
     // console.log( '\nlivereload > refresh\n' );
     setTimeout(function(){
