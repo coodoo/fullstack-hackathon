@@ -70,13 +70,13 @@ var comp = React.createClass({
   handleSave: function(evt){
       console.log( 'save new item' );
 
-
       var item = this.state.currentItem;
 
       // 未輸入文字的話就擋掉
       if( item.name.trim().length == 0 ) return;
 
-      item.id = 'lulala'//window.cnt++;
+      item.id = window.cnt++;
+      item.done = false;
 
       actions.createTodo( item );
 

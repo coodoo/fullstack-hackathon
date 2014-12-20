@@ -66,15 +66,22 @@ var AppActionCreators = {
 
             type:"POST",
 
-            data: item,
+            // 注意要正確設定 header 資料型別
+            dataType: "json",
+            contentType: "application/json",
+
+            // 然後將 item 轉成 json string 再送出
+            // 這樣可確保 Number 與 Boolean 值到 server 後能正確保留型別
+            data: JSON.stringify(item),
 
             //
             success: function(data, status, jqxhr){
 
                 // console.log( '新增資料結果: ', data, ' >item = ', item );
 
-                // 將 server 生成的 uid 更新到早先建立的物件，之後資料才會一致
+                // 將 server 生成的 id 更新到早先建立的物件，之後資料才會一致
                 item.id = data.id;
+                item.created = data.created;
             },
 
             //
@@ -108,7 +115,7 @@ var AppActionCreators = {
             item: item
         });
 
-        $.ajax('http://localhost:3000/api/todos/' + item.uid,
+        $.ajax('http://localhost:3000/api/todos/' + item.id,
         {
 
             type:"DELETE",

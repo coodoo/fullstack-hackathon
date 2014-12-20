@@ -48,12 +48,14 @@ module.exports = function(Todo) {
             // 取出用戶傳來的物件
             var obj = ctx.args.data;
 
+            delete obj.id;
+
             // 在上面新增資料
             // 這些欄位就會傳入 create() 裏被存入 db
             obj.created = new Date();
 
             // 這個是測試用的
-            obj.foo = new Date();
+            // obj.foo = new Date();
 
             // 處理完後控制權交回去
             next();
@@ -69,7 +71,7 @@ module.exports = function(Todo) {
             var result = ctx.result;
 
             // 可以繼續加料，最後再返還給客戶
-            result.bar = 'tender';
+            // result.bar = 'tender';
 
             // 處理完後控制權交回去
             next();

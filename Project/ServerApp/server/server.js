@@ -16,7 +16,7 @@ app
 
 //
 .use( '/', function(req, res, next ){
-    res.sendFile('client/index.html', {root: '../'});
+    res.sendFile('ServerApp/client/index.html', {root: '../'});
 })
 
 //
