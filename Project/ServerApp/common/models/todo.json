@@ -3,7 +3,7 @@
   "base": "PersistedModel",
   "idInjection": true,
   "properties": {
-    "title": {
+    "name": {
       "type": "string",
       "required": true
     },
@@ -14,7 +14,7 @@
     "memo": {
       "type": "string"
     },
-    "createdDate": {
+    "created": {
       "type": "Date"
     }
   },

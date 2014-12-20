@@ -2,7 +2,7 @@ module.exports = function(Todo) {
 
 
     // 各種欄位的預設值
-    Todo.definition.properties.createdDate.default = new Date()
+    Todo.definition.properties.created.default = new Date();
 
     // 等物件完成啟始化後再進行設定工作
     Todo.on('dataSourceAttached', function(obj) {
@@ -50,6 +50,9 @@ module.exports = function(Todo) {
 
             // 在上面新增資料
             // 這些欄位就會傳入 create() 裏被存入 db
+            obj.created = new Date();
+
+            // 這個是測試用的
             obj.foo = new Date();
 
             // 處理完後控制權交回去
@@ -73,8 +76,6 @@ module.exports = function(Todo) {
 
         });
 
-
-
         /**
          * 自定義的 remote method
          */
@@ -85,7 +86,7 @@ module.exports = function(Todo) {
             Todo.find(
 
               {
-                 /* order: 'createdDate DESC'*/
+                  order: 'created DESC'
               },
 
               function(err, results) {
@@ -150,18 +151,20 @@ module.exports = function(Todo) {
 
     }
 
-
+    /**
+     *
+     */
     function modelDidAttach() {
 
         // 塞兩筆測試資料進去
         var arr = [
             {
-                title: 'dummy item 1',
+                name: 'dummy item 1',
                 done: false,
                 memo: 'dummy memo 1'
             },
             {
-                title: 'dummy item 2',
+                name: 'dummy item 2',
                 done: true,
                 memo: 'dummy memo 2'
             }
