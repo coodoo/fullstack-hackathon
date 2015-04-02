@@ -2,7 +2,7 @@
  *
  */
 
-var actions = require('../actions/AppActionCreator');
+
 var ListItem = React.createFactory(require('./ListItem.jsx'));
 
 //
@@ -26,10 +26,10 @@ var comp = React.createClass({
                 selected={this.props.truth.selectedItem == item}
                 key={item.id}
 
-                onClick={this.handleClick.bind(this, item)}
-                onRemove={this.handleRemove} />
+                onClick={this.props.onClick.bind(this, item)}
+                onRemove={this.props.onRemove} />
 
-    }, this)
+    }, this);
 
     return (
 
@@ -43,18 +43,18 @@ var comp = React.createClass({
   /**
    *
    */
-  handleClick: function( item ){
-      console.log( '\n\nitem click: ', item.name );
-      actions.selectTodo(item);
-  },
-
-  /**
-   *
-   */
-  handleRemove: function( item ){
-      console.log( '\n\nitem remove: ', item.name );
-      actions.removeTodo(item);
-  },
+//  handleClick: function( item ){
+//      console.log( '\n\nitem click: ', item.name );
+//      actions.selectTodo(item);
+//  },
+//
+//  /**
+//   *
+//   */
+//  handleRemove: function( item ){
+//      console.log( '\n\nitem remove: ', item.name );
+//      actions.removeTodo(item);
+//  },
 
   //
   noop: function(){

@@ -8,6 +8,8 @@
 // import
 
 // var React = require('react');
+var Header = React.createFactory( require('./Header.jsx') );
+var Footer = React.createFactory( require('./Footer.jsx') );
 var ListContainer = React.createFactory( require('./ListContainer.jsx') );
 
 //========================================================================
@@ -32,7 +34,7 @@ var MainApp = React.createClass({
      * 主程式進入點
      */
     componentWillMount: function() {
-        TodoStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
+        //TodoStore.addListener( AppConstants.CHANGE_EVENT, this._onChange );
     },
 
     // 重要：root view 建立後第一件事，就是偵聽 store 的 change 事件
@@ -85,8 +87,11 @@ var MainApp = React.createClass({
         // console.log( '\tMainApp > render' );
 
         return (
-
-            <ListContainer />
+					 <div className="wrapper">
+                <Header />
+            		<ListContainer />
+                <Footer />
+            </div>
         )
     },
 });

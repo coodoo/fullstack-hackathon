@@ -8,20 +8,20 @@
 // import
 
 // var React = require('react');
-var Header = React.createFactory( require('./Header.jsx') );
-var Footer = React.createFactory( require('./Footer.jsx') );
 var InputBox = React.createFactory( require('./InputBox.jsx') );
 var List = React.createFactory( require('./List.jsx') );
 
 var TodoStore = require('../stores/TodoStore');
 var AppConstants = require('../constants/AppConstants');
 
+var actions = require('../actions/AppActionCreator');
+
 
 //========================================================================
 //
 // Component
 
-var MainApp = React.createClass({
+var ListContainer = React.createClass({
 
     //========================================================================
     //
@@ -114,18 +114,14 @@ var MainApp = React.createClass({
         // console.log( '\tMainApp > render' );
 
         return (
-
-            <div className="wrapper">
-
-                <Header />
-
                 <div className="main-box">
                     <InputBox truth={this.state} />
-                    <List truth={this.state} />
+                    <List 
+											truth={this.state}
+											onClick={actions.selectTodo}
+											onRemove={actions.removeTodo}
+										/>
                 </div>
-
-                <Footer />
-            </div>
         )
     },
 
@@ -165,7 +161,8 @@ var MainApp = React.createClass({
          };
     }
 
+	
 
 });
 
-module.exports = MainApp;
+module.exports = ListContainer;
