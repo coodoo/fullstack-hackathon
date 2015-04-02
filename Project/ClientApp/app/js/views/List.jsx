@@ -7,7 +7,19 @@ var ListItem = React.createFactory(require('./ListItem.jsx'));
 
 //
 var comp = React.createClass({
+	
+	propTypes: {
 
+		todo: React.PropTypes.shape({
+      id: React.PropTypes.string,
+      name: React.PropTypes.string,
+      memo: React.PropTypes.number
+    }),
+		
+		// callbacks
+    onClick: React.PropTypes.func,
+    onRemove: React.PropTypes.func,
+	},
   /**
    *
    */
@@ -15,22 +27,24 @@ var comp = React.createClass({
 
     // 取出所有要繪製的資料
     var arrTodos = this.props.truth.arrTodos;
+// 跑 loop 一筆筆建成 ListItem 元件
+		var arr = arrTodos.map(function (item) {
 
-    // 跑 loop 一筆筆建成 ListItem 元件
-    var arr = arrTodos.map(function(item){
+			var todo = item;
+			var onClick = this.props.onClick.bind(this, item);
+			var onRemove = this.props.onRemove;
 
-        // 注意每個 item 要有一個獨一無二的 key 值
-        return <ListItem
+			// 注意每個 item 要有一個獨一無二的 key 值
+			return <ListItem
 
-                todoItem={item}
-                selected={this.props.truth.selectedItem == item}
-                key={item.id}
+			todoItem = {todo}
+			selected = {this.props.truth.selectedItem == todo}
+			key = {todo.id}
+			onClick = {onClick}
+			onRemove = {onRemove}
+			/>
 
-                onClick={this.props.onClick.bind(this, item)}
-                onRemove={this.props.onRemove} />
-
-    }, this);
-
+}, this);
     return (
 
       <div className="todo-list">
