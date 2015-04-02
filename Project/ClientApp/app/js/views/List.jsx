@@ -35,8 +35,6 @@ var comp = React.createClass({
 		var arr = arrTodos.map(function (item) {
 
 			var todo = item;
-			var onClick = this.props.onClick.bind(this, item);
-			var onRemove = this.props.onRemove.bind(this, item);
 
 			// 注意每個 item 要有一個獨一無二的 key 值
 			return <ListItem
@@ -44,8 +42,8 @@ var comp = React.createClass({
 			todoItem = {todo}
 			selected = {selectedItem == todo}
 			key = {todo.id}
-			onClick = {onClick}
-			onRemove = {onRemove}
+			onClick = {this.props.onClick.bind(this, item)}
+			onRemove = {this.props.onRemove.bind(this, item)}
 			/>
 
 		}, this);
