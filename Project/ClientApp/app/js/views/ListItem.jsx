@@ -40,8 +40,6 @@ var comp = React.createClass({
 
 	
 		var todoItem = this.props.todoItem
-		var onClick = this.props.onClick;
-		var onRemove = this.props.onRemove;
 		
     return (
       
@@ -49,12 +47,12 @@ var comp = React.createClass({
            onMouseOver={this.handleMouseMovement}
            onMouseOut={this.handleMouseMovement}
            onDoubleClick={this.handleDblClick} 
-           onClick={onClick} >
+           onClick={this.props.onClick} >
           
           <span>{todoItem.name}</span>
           
           <span className="glyphicon glyphicon-remove right hide" 
-                onClick={onRemove} ></span>
+                onClick={this.props.onRemove} ></span>
 
       </div>
     );
