@@ -16,6 +16,8 @@ var comp = React.createClass({
       memo: React.PropTypes.number
     }),
 		
+		selectedItem: React.PropTypes.object,
+		
 		// callbacks
     onClick: React.PropTypes.func,
     onRemove: React.PropTypes.func,
@@ -27,24 +29,27 @@ var comp = React.createClass({
 
     // 取出所有要繪製的資料
     var arrTodos = this.props.truth.arrTodos;
-// 跑 loop 一筆筆建成 ListItem 元件
+		var selectedItem = this.props.truth.selectedItem;
+		
+		// 跑 loop 一筆筆建成 ListItem 元件
 		var arr = arrTodos.map(function (item) {
 
 			var todo = item;
 			var onClick = this.props.onClick.bind(this, item);
-			var onRemove = this.props.onRemove;
+			var onRemove = this.props.onRemove.bind(this, item);
 
 			// 注意每個 item 要有一個獨一無二的 key 值
 			return <ListItem
 
 			todoItem = {todo}
-			selected = {this.props.truth.selectedItem == todo}
+			selected = {selectedItem == todo}
 			key = {todo.id}
 			onClick = {onClick}
 			onRemove = {onRemove}
 			/>
 
-}, this);
+		}, this);
+		
     return (
 
       <div className="todo-list">
@@ -54,27 +59,7 @@ var comp = React.createClass({
 
   },
 
-  /**
-   *
-   */
-//  handleClick: function( item ){
-//      console.log( '\n\nitem click: ', item.name );
-//      actions.selectTodo(item);
-//  },
-//
-//  /**
-//   *
-//   */
-//  handleRemove: function( item ){
-//      console.log( '\n\nitem remove: ', item.name );
-//      actions.removeTodo(item);
-//  },
-
-  //
-  noop: function(){
-
-  }
-
+  noop: function(){  }
 });
 
 module.exports = comp;
