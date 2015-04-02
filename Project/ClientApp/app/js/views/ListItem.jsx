@@ -14,6 +14,20 @@ var comp = React.createClass({
       this.$remove = this.$input.next();
   },
 
+	
+	propTypes: {
+
+		todoItem: React.PropTypes.shape({
+      id: React.PropTypes.string,
+      name: React.PropTypes.string,
+      memo: React.PropTypes.number
+    }),
+		
+		// callbacks
+    onClick: React.PropTypes.func,
+    onRemove: React.PropTypes.func,
+	},
+	
   /**
    * 
    */
@@ -24,18 +38,23 @@ var comp = React.createClass({
         'selected': this.props.selected
     });
 
+	
+		var todoItem = this.props.todoItem
+		var onClick = this.props.onClick;
+		var onRemove = this.props.onRemove;
+		
     return (
       
       <div className={classes}
            onMouseOver={this.handleMouseMovement}
            onMouseOut={this.handleMouseMovement}
            onDoubleClick={this.handleDblClick} 
-           onClick={this.props.onClick} >
+           onClick={onClick} >
           
-          <span>{this.props.todoItem.name}</span>
+          <span>{todoItem.name}</span>
           
           <span className="glyphicon glyphicon-remove right hide" 
-                onClick={this.handleRemove} ></span>
+                onClick={onRemove} ></span>
 
       </div>
     );
@@ -89,21 +108,6 @@ var comp = React.createClass({
       el.focus();
   },
 
-
-  /**
-   * ListItem 內部預先處理過刪除事件
-   */
-  handleRemove: function(evt){
-
-    // 停止此事件繼續向上廣播，不然會連帶觸發 onClick 事件
-    evt.stopPropagation();
-
-    // 如果外界有傳入 onRemove handler，就觸發它，並且將自已身份也傳出去，方便後續處理
-    if( this.props.onRemove ){
-        this.props.onRemove(this.props.todoItem);
-    }
-
-  },
 
   /**
    * 
